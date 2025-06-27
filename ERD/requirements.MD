@@ -94,3 +94,6 @@ This document covers the diagram models, all specified entities, attributes, rel
 * A user can send multiple messages (USER ||--o{ MESSAGE as sender)
 * A user can receive multiple messages (USER ||--o{ MESSAGE as recipient)
 * Each message has exactly one sender and one recipient
+
+## ERD Diagram
+![Alt text](ERD/ERD-airbnb.png)
