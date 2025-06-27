@@ -97,3 +97,4 @@ This document covers the diagram models, all specified entities, attributes, rel
 
 ## ERD Diagram
 ![ER Diagram of AirBnB Database](ERD-airbnb.png)
+*ER Diagram of AirBnB Database*
