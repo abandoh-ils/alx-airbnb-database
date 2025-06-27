@@ -4,27 +4,20 @@ This document provides analysis of the AirBnB database scehma normailzation.
 
 
 ## Original Schema Issues:
-1. 1NF Violation (Atomicity):
+1. **1NF Violation (Atomicity):**
+    * **role** ENUM allows only one value per user, but users can have multiple roles (guest/host/admin)
 
-* role ENUM allows only one value per user, but users can have multiple roles (guest/host/admin)
+2. **2NF Violation (Partial Dependencies):**
+    * **total_price** in Bookings depends on both **price_per_night** (Properties) and date range
 
-2. 2NF Violation (Partial Dependencies):
+3. **3NF Violation (Transitive Dependencies):**
+    * **role** in Users determines host capabilities, but hosting status depends on property ownership
+    * Payment status duplicated in Bookings and Payments
 
-* total_price in Bookings depends on both price_per_night (Properties) and date range
-
-3. 3NF Violation (Transitive Dependencies):
-
-* role in Users determines host capabilities, but hosting status depends on property ownership
-
-* Payment status duplicated in Bookings and Payments
-
-4. Data Redundancy:
-
-* total_price can be calculated from dates and property price
-
-* role duplicates information inferable from relationships
-
-* Payment status stored in two places
+4. **Data Redundancy:**
+    * **total_price** can be calculated from dates and property price
+    * **role** duplicates information inferable from relationships
+    * Payment status stored in two places
 
 ## Normailzation Steps:
 
@@ -32,19 +25,19 @@ This document provides analysis of the AirBnB database scehma normailzation.
 
 ![1NF User Roles](images\1nf-user-role.png)
 
-* Created **USER_ROLE** table to handle multi-valued roles
-* Composite PK ensures unique role assignments per user
-* Resolves atomicity violation in original **role** ENUM
+    * Created **USER_ROLE** table to handle multi-valued roles
+    * Composite PK ensures unique role assignments per user
+    * Resolves atomicity violation in original **role** ENUM
 
 ### Step 2: Achieve 2NF (Remove Partial Dependencies)
 
- >   BOOKING {
- >       UUID booking_id PK
- >       DECIMAL snapshot_price_per_night
- >       DATE start_date
- >       DATE end_date
- >       -- Removed: total_price --
- >   }
+    >   BOOKING {
+    >       UUID booking_id PK
+    >       DECIMAL snapshot_price_per_night
+    >       DATE start_date
+    >       DATE end_date
+    >       -- Removed: total_price --
+    >   }
 
 * Added **snapshot_price_per_night** to store historical price
 * Removed **total_price** (derivable via: **(end_date - start_date) * snapshot_price_per_night**)
@@ -52,12 +45,12 @@ This document provides analysis of the AirBnB database scehma normailzation.
 
 ### Step 3: Achieve 3NF (Remove Transitive Dependencies)
 
->    PAYMENT {
->        VARCHAR status "ENUM: pending, completed, refunded"
->        -- Removed duplicate status from BOOKING --
->    }
->    
->    TRIGGER validate_host BEFORE INSERT ON PROPERTIES
+    >    PAYMENT {
+    >        VARCHAR status "ENUM: pending, completed, refunded"
+    >        -- Removed duplicate status from BOOKING --
+    >    }
+    >    
+    >    TRIGGER validate_host BEFORE INSERT ON PROPERTIES
 
 * Removed **status** from BOOKING
 * Added comprehensive **status** to PAYMENT
