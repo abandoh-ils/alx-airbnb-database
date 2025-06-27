@@ -17,9 +17,9 @@ INSERT INTO user_roles (user_id, role) VALUES
 
 -- Insert properties
 INSERT INTO properties (property_id, host_id, name, description, location, price_per_night, created_at, updated_at) VALUES
-('00000000-0000-0000-0000-000000000101', '00000000-0000-0000-0000-000000000001', 'Beachfront Villa', 'Luxury villa with ocean view', 'Miami Beach, FL', 350.00, '2023-01-20', '2023-05-15'),
-('00000000-0000-0000-0000-000000000102', '00000000-0000-0000-0000-000000000001', 'Downtown Loft', 'Modern loft in city center', 'Chicago, IL', 185.00, '2023-02-25', '2023-02-25'),
-('00000000-0000-0000-0000-000000000103', '00000000-0000-0000-0000-000000000002', 'Mountain Cabin', 'Cozy cabin with mountain views', 'Aspen, CO', 275.00, '2023-03-15', '2023-06-01');
+('00000000-0000-0000-0000-000000000101', '00000000-0000-0000-0000-000000000001', 'Beachfront Villa', 'Luxury villa with ocean view', 'Takoradi, WR', 350.00, '2023-01-20', '2023-05-15'),
+('00000000-0000-0000-0000-000000000102', '00000000-0000-0000-0000-000000000001', 'Downtown Loft', 'Modern loft in city center', 'Accra, GR', 185.00, '2023-02-25', '2023-02-25'),
+('00000000-0000-0000-0000-000000000103', '00000000-0000-0000-0000-000000000002', 'Mountain Cabin', 'Cozy cabin with mountain views', 'Koforidua, ER', 275.00, '2023-03-15', '2023-06-01');
 
 -- Insert bookings
 INSERT INTO bookings (booking_id, property_id, user_id, start_date, end_date, snapshot_price_per_night, status, created_at) VALUES
