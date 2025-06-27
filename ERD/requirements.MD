@@ -96,4 +96,4 @@ This document covers the diagram models, all specified entities, attributes, rel
 * Each message has exactly one sender and one recipient
 
 ## ERD Diagram
-![Alt text](ERD/ERD-airbnb.png)
+![Alt text](ERD-airbnb.png)
