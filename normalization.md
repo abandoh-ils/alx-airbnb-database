@@ -23,7 +23,7 @@ This document provides analysis of the AirBnB database scehma normailzation.
 
 ### Step 1: Achieve 1NF (Atomic Values)
 
-![1NF User Roles](images\1nf-user-role.png)
+![1NF User Roles](/images/1nf-user-role.png)
 
     * Created **USER_ROLE** table to handle multi-valued roles
     * Composite PK ensures unique role assignments per user
