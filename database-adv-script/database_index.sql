@@ -15,3 +15,15 @@ CREATE INDEX idx_bookings_status ON bookings(status);
 CREATE INDEX idx_properties_host_id ON properties(host_id);
 CREATE INDEX idx_properties_location ON properties(location);
 CREATE INDEX idx_properties_price ON properties(price_per_night);
+
+-- EXPLAIN ANALYZE
+
+EXPLAIN ANALYZE
+SELECT * FROM bookings 
+WHERE user_id = '00000000-0000-0000-0000-000000000003' 
+  AND status = 'confirmed';
+
+EXPLAIN ANALYZE
+SELECT * FROM bookings 
+WHERE user_id = '00000000-0000-0000-0000-000000000003' 
+  AND status = 'confirmed';
